@@ -1,4 +1,5 @@
 import React from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Nav = () => {
   return (
@@ -12,6 +13,10 @@ const Nav = () => {
             <a href="/" className="nav__link">
               Home
             </a>
+          </li>
+          <li className="nav__list">
+            <a href="/" className="nav__link">
+            Books</a>
           </li>
           <button className="btn__menu">
             <FontAwesomeIcon icon="bars" />
