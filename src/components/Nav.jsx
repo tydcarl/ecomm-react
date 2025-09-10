@@ -10,7 +10,7 @@ const Nav = () => {
         <ul className="nav__links">
           <li className="nav__list">
             <a href="/" className="nav__link">
-              Books
+              Home
             </a>
           </li>
           <button className="btn__menu">
