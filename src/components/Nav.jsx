@@ -29,6 +29,11 @@ const Nav = () => {
             <span className="cart__length">2</span>
           </li>
         </ul>
+        <div className="menu__backdrop">
+            <button className="btn__menu btn__menu--close">
+                <FontAwesomeIcon icon="times" />
+            </button>
+        </div>
       </div>
     </nav>
   );
