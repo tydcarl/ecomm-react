@@ -1,5 +1,4 @@
-import './App.css';
-import Discounted from './components/Discounted';
+import Discounted from './components/ui/Discounted';
 import Featured from  './components/Featured';
 import Highlights from './components/Highlights';
 import Landing from './components/Landing';
