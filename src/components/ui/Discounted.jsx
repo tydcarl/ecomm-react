@@ -1,5 +1,5 @@
 import React from "react";
-import { books } from "./../data";
+import { books } from "../../data";
 import Book from "./Book";
 
 const Discounted = () => {
@@ -7,11 +7,15 @@ const Discounted = () => {
     <section id="recent">
       <div className="container">
         <div className="row">
-          <div className="section__tite">
+          <h2 className="section__tite">
             Discount <span className="purple">Books</span>
-          </div>
+            </h2>
+          
           <div className="books">
-            {books.map((book) => (
+            {books
+            .filter(book => book.salePrice > 0)
+            .slice(0, 8)
+            .map((book) => (
               <Book book={book} key={book.id} />
             ))}
           </div>
