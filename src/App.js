@@ -1,4 +1,5 @@
 import Discounted from './components/ui/Discounted';
+import Explore from './components/ui/Explore';
 import Featured from  './components/Featured';
 import Highlights from './components/Highlights';
 import Landing from './components/Landing';
@@ -12,6 +13,7 @@ function App() {
       <Highlights />
       <Featured />
       <Discounted />
+      <Explore />
     </div>
   );
 }
