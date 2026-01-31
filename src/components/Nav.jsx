@@ -1,6 +1,6 @@
 import React from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Librarylogo from '../assets/Library.svg'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Librarylogo from "../assets/Library.svg";
 
 const Nav = () => {
   function openMenu() {
