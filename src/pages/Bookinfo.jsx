@@ -1,20 +1,35 @@
-import React from 'react';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
+import { Link } from "react-router-dom";
 
 const BookInfo = ({ books }) => {
-    return (
+  return (
     <div id="books__body">
-        <main id="books__main">
-            <div className="books__container">
-                <div className="row">
-                    <div className="book__selected--top">
-                        
-                    </div>
-                </div>
+      <main id="books__main">
+        <div className="books__container">
+          <div className="row">
+            <div className="book__selected--top">
+              <Link to="/books" className="book__link">
+                <FontAwesomeIcon icon="arrow-left" />
+              </Link>
+              <Link to="/book" className="book__link">
+                <h2 className="book__selected--title--top">Books</h2>
+              </Link>
             </div>
-        </main>
-
+            <div className="book__selected">
+              <figure className="book__selected--figure">
+                <img src="" alt="" className="book__selected--ig" />
+              </figure>
+              <div className="book__selected--description">
+                <h2 className="book__selected--title">Crack the Coding Interview</h2>
+                <FontAwesomeIcon icon="star"></FontAwesomeIcon>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
-    );
-}
+  );
+};
 
-export default BookInfo; 
+export default BookInfo;
