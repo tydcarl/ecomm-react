@@ -12,7 +12,8 @@ function App() {
         <Nav />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path ="/books" render={() => <Books books={books} />}/>
+          <Route path="/books" element={<Books books={books} />}/>
+          <Route path="/books/1" render={() => <BookInfo books={books} />} />
         </Routes>
         <Footer />
       </div>
