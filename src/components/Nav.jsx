@@ -1,5 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import Librarylogo from "../assets/Library.svg";
 import { Link } from "react-router-dom";
 
@@ -33,7 +34,7 @@ const Nav = () => {
           </button>
           <li className="nav__icon">
             <Link to="/cart" className="nav__link">
-              <FontAwesomeIcon icon="shopping-cart" />
+              <FontAwesomeIcon icon={faShoppingCart} />
             </Link>
             <span className="cart__length">2</span>
           </li>

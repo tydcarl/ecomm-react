@@ -7,7 +7,7 @@ import Book from "../components/ui/Book";
 
 const BookInfo = ({ books, addToCart }) => {
   const { id } = useParams();
-  const book = books.find((book) => +book.id == +id);
+  const book = books.find((book) => +book.id === +id);
   console.log(book);
   return (
     <div id="books__body">
