@@ -46,10 +46,6 @@ return (
         <Route path="/books" exact element={<Books books={books} />} />
         <Route
           path="/books/:id"
-          element={<BookInfo books={books} addToCart={addToCart} />}
-        />
-        <Route
-          path="/books/:id"
           element={<BookInfo books={books} addToCart={addToCart} cart={cart}
           />}
         />
