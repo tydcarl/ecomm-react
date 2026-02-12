@@ -12,52 +12,49 @@ function App() {
   const [cart, setCart] = useState([]);
 
   function addToCart(book) {
-    setCart([...cart, book])
     const dupeItem = cart.find((item) => +item.id === +book.id);
     if (dupeItem) {
-      setCart(cart.map(item => {
-        if (item.id === dupeItem.id) {
-          return {
-            ...item, 
-            quantity: item.quantity + 1, 
+      setCart(
+        cart.map((item) => {
+          if (item.id === dupeItem.id) {
+            return {
+              ...item,
+              quantity: item.quantity + 1,
+            };
+          } else {
+            return item;
           }
-        }
-        else {
-          return item
-        }
-      }))
-      else {
-          setCart([...cart, {...book, quantity: 1}])
-      }
+        }),
+      );
+    } else {
+      setCart([...cart, { ...book, quantity: 1 }]);
     }
-
-    setCart((prev) => [...prev, book]);
-    console.log(cart);
   }
 
-
-
-  useEffect(() => {
-    console.log(cart);
-  }, [cart]);
-
-  return (
-    <Router>
-      <div className="App">
-        <Nav />
-        <Routes>
-          <Route path="/" exact element={<Home />} />
-          <Route path="/books" exact element={<Books books={books} />} />
-          <Route
-            path="/books/:id"
-            element={<BookInfo books={books} addToCart={addToCart} />}
-          />
-          <Route path="/cart" element={<Cart books={books} />} />
-        </Routes>
-        <Footer />
-      </div>
-    </Router>
-  );
+  setCart((prev) => [...prev, book]);
+  console.log(cart);
 }
+
+useEffect(() => {
+  console.log(cart);
+}, [cart]);
+
+return (
+  <Router>
+    <div className="App">
+      <Nav />
+      <Routes>
+        <Route path="/" exact element={<Home />} />
+        <Route path="/books" exact element={<Books books={books} />} />
+        <Route
+          path="/books/:id"
+          element={<BookInfo books={books} addToCart={addToCart} />}
+        />
+        <Route path="/cart" element={<Cart books={books} />} />
+      </Routes>
+      <Footer />
+    </div>
+  </Router>
+);
 
 export default App;

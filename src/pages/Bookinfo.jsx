@@ -8,11 +8,13 @@ import Book from "../components/ui/Book";
 const BookInfo = ({ books, addToCart }) => {
   const { id } = useParams();
   const book = books.find((book) => +book.id === +id);
-  const [added, setAdded] = useState(false);
 
   function addBookToCart(book) {
-    setAdded(true);
     addToCart(book);
+  }
+
+  function bookExistsOnCart() {
+    return cart.find((book) => book.id === +id);
   }
   console.log(book);
   return (
@@ -58,8 +60,10 @@ const BookInfo = ({ books, addToCart }) => {
                     exercitationem!
                   </p>
                 </div>
-                {added ? (
-                  <button className="btn">Checkout</button>
+                {bookExistsOnCart() ? (
+                  <Link to={`cart`} className="book__link">
+                    <button className="btn">Checkout</button>
+                  </Link>
                 ) : (
                   <button className="btn" onClick={() => addBookToCart(book)}>
                     Add to Cart
