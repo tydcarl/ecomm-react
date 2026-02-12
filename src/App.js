@@ -31,8 +31,6 @@ function App() {
     }
   }
 
-  setCart((prev) => [...prev, book]);
-  console.log(cart);
 
 
 useEffect(() => {
@@ -46,6 +44,10 @@ return (
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/books" exact element={<Books books={books} />} />
+        <Route
+          path="/books/:id"
+          element={<BookInfo books={books} addToCart={addToCart} />}
+        />
         <Route
           path="/books/:id"
           element={<BookInfo books={books} addToCart={addToCart} />}
