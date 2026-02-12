@@ -50,7 +50,8 @@ return (
         />
         <Route
           path="/books/:id"
-          element={<BookInfo books={books} addToCart={addToCart} />}
+          element={<BookInfo books={books} addToCart={addToCart} cart={cart}
+          />}
         />
         <Route path="/cart" element={<Cart books={books} />} />
       </Routes>
