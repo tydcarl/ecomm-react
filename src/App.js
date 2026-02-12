@@ -33,7 +33,7 @@ function App() {
 
   setCart((prev) => [...prev, book]);
   console.log(cart);
-}
+
 
 useEffect(() => {
   console.log(cart);
@@ -56,5 +56,6 @@ return (
     </div>
   </Router>
 );
+}
 
 export default App;
