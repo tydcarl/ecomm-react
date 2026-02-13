@@ -16,65 +16,62 @@ function App() {
   }
 
   function changeQuantity(book, quantity) {
-    setCart(cart.map(item => {
-    item.id === book.id ? {
-    
-        ...item,
-        quantity: +quantity,
-      
-     }
-     : item
-    ) 
-    );
-    }
-
-    const dupeItem = cart.find((item) => +item.id === +book.id);
-    if (dupeItem) {
-      setCart(
-        cart.map((item) => {
-          if (item.id === dupeItem.id) {
-            return {
+    setCart(
+      cart.map((item) =>
+        item.id === book.id
+          ? {
               ...item,
-              quantity: item.quantity + 1,
-            };
-          } else {
-            return item;
-          }
-        }),
-      );
-    } else {
-      setCart([...cart, { ...book, quantity: 1 }]);
-    }
+              quantity: +quantity,
+            }
+          : item,
+      ),
+    );
   }
 
-  useEffect(() => {
-    console.log(cart);
-  }, [cart]);
+  const dupeItem = cart.find((item) => +item.id === +book.id);
+  if (dupeItem) {
+    setCart(
+      cart.map((item) => {
+        if (item.id === dupeItem.id) {
+          return {
+            ...item,
+            quantity: item.quantity + 1,
+          };
+        } else {
+          return item;
+        }
+      }),
+    );
+  } else {
+    setCart([...cart, { ...book, quantity: 1 }]);
+  }
+}
 
-  return (
-    <Router>
-      <div className="App">
-        <Nav />
-        <Routes>
-          <Route path="/" exact element={<Home />} />
-          <Route path="/books" exact element={<Books books={books} />} />
-          <Route
-            path="/books/:id"
-            element={
-              <BookInfo books={books} addToCart={addToCart} cart={cart} />
-            }
-          />
-          <Route
-            path="/cart"
-            element={
-              <Cart books={books} cart={cart} changeQuantity={changeQuantity} />
-            }
-          />
-        </Routes>
-        <Footer />
-      </div>
-    </Router>
-  );
+useEffect(() => {
+  console.log(cart);
+}, [cart]);
 
+return (
+  <Router>
+    <div className="App">
+      <Nav />
+      <Routes>
+        <Route path="/" exact element={<Home />} />
+        <Route path="/books" exact element={<Books books={books} />} />
+        <Route
+          path="/books/:id"
+          element={<BookInfo books={books} addToCart={addToCart} cart={cart} />}
+        />
+        <Route
+          path="/cart"
+          element={
+            <Cart books={books} cart={cart} changeQuantity={changeQuantity} />
+          }
+        />
+      </Routes>
+      <Footer />
+    </div>
+  </Router>
+);
 
 export default App;
