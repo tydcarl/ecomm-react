@@ -1,6 +1,6 @@
 import React from "react";
 
-const Cart = ({ cart, changeQuantity }) => {
+const Cart = ({ cart, changeQuantity, removeItem}) => {
   const calculateTotal = () => {
     return cart
       .reduce((total, item) => {
@@ -40,7 +40,7 @@ const Cart = ({ cart, changeQuantity }) => {
                         <span className="cart__book--price">
                           ${(book.salePrice || book.originalPrice).toFixed(2)}
                         </span>
-                        <button className="cart__book--remove">Remove</button>
+                        <button className="cart__book--remove" onClick={() =>removeItem(book)}>Remove</button>
                       </div>
                     </div>
 

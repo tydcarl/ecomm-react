@@ -32,60 +32,52 @@ function App() {
   }
 
   function changeQuantity(book, quantity) {
-    setCart(
-      cart.map((item) =>
-        item.id === book.id
-          ? {
-              ...item,
-              quantity: +quantity,
-            }
-          : item,
-      ),
-    );
-    const dupeItem = cart.find((item) => +item.id === +book.id);
-    if (dupeItem) {
-      setCart(
-        cart.map((item) => {
-          if (item.id === dupeItem.id) {
-            return {
-              ...item,
-              quantity: item.quantity + 1,
-            };
-          } else {
-            return item;
-          }
-        }),
-      );
+    if (quantity <= 0) {
+      setCart((prevCart) => prevCart.filter((item) => item.id !== book.id));
     } else {
-      setCart([...cart, { ...book, quantity: 1 }]);
+      setCart((prevCart) =>
+        prevCart.map((item) =>
+          item.id === book.id ? { ...item, quantity: quantity } : item,
+        ),
+      );
     }
   }
 
-useEffect(() => {
-  console.log(cart);
-}, [cart]);
+  function removeItem(item) {
+    setCart(cart.filter((book) => book.id !== item.id));
+  }
+  useEffect(() => {
+    console.log(cart);
+  }, [cart]);
 
-return (
-  <Router>
-    <div className="App">
-      <Nav />
-      <Routes>
-        <Route path="/" exact element={<Home />} />
-        <Route path="/books" exact element={<Books books={books} />} />
-        <Route
-          path="/books/:id"
-          element={<BookInfo books={books} addToCart={addToCart} cart={cart} />}
-        />
-        <Route
-          path="/cart"
-          element={
-            <Cart books={books} cart={cart} changeQuantity={changeQuantity} />
-          }
-        />
-      </Routes>
-      <Footer />
-    </div>
-  </Router>
-);
+  return (
+    <Router>
+      <div className="App">
+        <Nav />
+        <Routes>
+          <Route path="/" exact element={<Home />} />
+          <Route path="/books" exact element={<Books books={books} />} />
+          <Route
+            path="/books/:id"
+            element={
+              <BookInfo books={books} addToCart={addToCart} cart={cart} />
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <Cart
+                books={books}
+                cart={cart}
+                changeQuantity={changeQuantity}
+                removeItem={removeItem}
+              />
+            }
+          />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
+  );
 }
 export default App;
