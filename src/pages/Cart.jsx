@@ -1,6 +1,19 @@
-import React from "react";
+import React { useState, useEffect} from "react";
 
 const Cart = ({ cart, changeQuantity }) => {
+  const [total, setTotal] = useState(); 
+  useEffect(() => {
+        setTotal()
+
+setTotal()
+  }, [cart])
+  const total = () => {
+    cart.forEach(item => {
+      price += +(item.salePrice || book.originalPrice).toFixed(2);
+    });
+    return price;
+  } ;
+
   return (
     <div id="books__body">
       <main id="books__main">
@@ -25,7 +38,9 @@ const Cart = ({ cart, changeQuantity }) => {
                           <span className="cart__book--title">
                             {book.title}
                           </span>
-                          <span className="cart__book--price">${(book.salePrice || book.originalPrice).toFixed(2)}</span>
+                          <span className="cart__book--price">
+                            ${(book.salePrice || book.originalPrice).toFixed(2)}
+                          </span>
                           <button className="cart__book--remove">Remove</button>
                         </div>
                       </div>
@@ -35,13 +50,19 @@ const Cart = ({ cart, changeQuantity }) => {
                           min={0}
                           max={99}
                           class="cart__input"
-                          onChange={(event) => changeQuantity(event.target.value)}
+                          value={book.quantity}
+                          onChange={(event) =>
+                            changeQuantity(book, event.target.value)
+                          }
                         />
                       </div>
-                      <div className="cart__total">$10</div>
+                      <div className="cart__total">
+                        $
+                        {((book.salePrice || book.originalPrice) * book.quantity).toFixed(2))
+                      </div>
                     </div>
                   );
-                })}
+                }))}
               </div>
             </div>
             <div className="total">
@@ -55,7 +76,7 @@ const Cart = ({ cart, changeQuantity }) => {
               </div>
               <div className="total__item total__price">
                 <span>Total</span>
-                <span>$9.75</span>
+                <span>${total()}</span>
               </div>
               <button
                 className="btn btn__checkout no-cursor"
