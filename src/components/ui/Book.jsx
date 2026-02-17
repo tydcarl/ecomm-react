@@ -5,24 +5,24 @@ import Rating from "./Rating";
 import Price from "./Price";
 
 const Book = ({ book }) => {
-  const [img, setImg] = useState();
-
-  const mountedRef = useRef(true);
+  const [img, setImg] = useState(null);
 
   useEffect(() => {
+    setImg(null);
+
     const image = new Image();
     image.src = book.url;
+
     image.onload = () => {
       setTimeout(() => {
-        if (mountedRef.current) {
-          setImg(image);
-        }
+        setImg(image);
       }, 300);
     };
-    return () => {
-      mountedRef.current = false;
+
+    image.onerror = () => {
+      console.log("Image failed:", book.url);
     };
-  });
+  }, [book.url]);
 
   return (
     <div className="book">
